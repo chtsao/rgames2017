@@ -3,6 +3,10 @@
 #             sid (student id): numeric 
 #             name            : factor 
 #             straw (straws to be drawn) : numeric
+# by Kno Tsao
+
+#Make sure:  1. The file pklist2.txt has been downloaded in your working directory 
+#            2. The working directory is correctly set.
 pklist <- read.delim("pklist2.txt", header=FALSE)
 View(pklist)       # A good view of the list
 v3<-list(1:20)     # Create a list from 1 to 20 (no. of students)
@@ -21,4 +25,4 @@ pklist
 
 #點名程式
 sample(name,5) # Get 5 random names from class names
-
+# end
