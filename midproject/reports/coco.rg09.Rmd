@@ -1,0 +1,135 @@
+---
+title: "Work on Stat 2016/2017 exam data (rev)"
+output:
+  html_document: default
+  html_notebook: default
+---
+Rev note: Some (possibly) useful commands and experiments done in class are added. 
+
+## Data management: 
+
+Remove id data from 2017 data and output as a csv file. In addition,
+I also randomly reorder the rows for anonymity. (R codes FYR/For Your Reference)
+```{r Remove id}
+#t<-matrix(scan("midstat2017m.csv"),ncol=3,byrow=T)
+## The first column is id and intentionally left out
+#exam16 <-data.frame(year=as.factor(t[,2]),mid=t[,3])
+#exam16<-exam16[sample(nrow(exam16)),]
+## Two different csv outputs
+#write.csv(exam16, file = "stat17noid2.csv")
+#write.table(exam16, file = "stat17noid.csv",row.names=FALSE, na="",col.names=FALSE, sep=" ")
+```
+Import stat 2017 data 
+```{r}
+library(data.table)
+#stat17<-fread('stat17noid.csv')
+stat17<-fread('http://faculty.ndhu.edu.tw/~chtsao/ftp/stat17noid.csv')
+colnames(stat17)<-c("year","mid")
+stat17$year<-as.factor(stat17$year)
+summary(stat17)
+```
+Data cleansing using subset command
+```{r}
+stat17[which(mid < 0)]
+stat17<-subset(stat17,mid >= 0)
+summary(stat17)
+# You may also view the whole dataframe in the Environment pane ~ View(stat17)
+```
+Import stat 2016 data 
+```{r}
+stat16 <- fread('http://faculty.ndhu.edu.tw/~chtsao/ftp/stat2016.txt')
+colnames(stat16)<-c("year","mid","final")
+stat16$year<-as.factor(stat16$year)
+head(stat16)   # Take a quick look of first few cases
+summary(stat16)
+```
+Now we have two dataframes, stat2016(year, mid, final), stat2017(year,mid). 
+
+##Where are we heading
+Where are we now? What do we know? What do we want to know (but unknown now)?
+
+> ~~Walk~~ Prog before you run. Think before you prog.
+
+Some handy functions/commands for exploratory data analysis and data cleansing
+```{r}
+suppressMessages(library(dplyr)) # load package dplyr but suppress its messages
+stat16.23<-filter(stat16, year == 2 | year == 3)
+stat16.2<-filter(stat16,year==2 )
+stat16.3<-filter(stat16,year==3)
+summary(stat16.23)
+```
+```{r}
+library(ggplot2)
+scatter <- ggplot(data=stat16.23, aes(x = mid, y = final)) 
+scatter + geom_point(aes(color=year, shape=year)) +
+  xlab("midterm") +  ylab("final") +
+  ggtitle("Midterm vs Final Plot (Stat16.23)")
+```
+
+```{r}
+stat17.23<-filter(stat17, year == 2 | year == 3)
+stat17.2<-filter(stat17,year==2 )
+stat17.3<-filter(stat17,year==3)
+summary(stat17.23)
+```
+More 
+```{r}
+smooth <- ggplot(data=stat16.23, aes(x=mid, y=final, color=year)) + 
+  geom_point(aes(shape=year), size=1.5) + xlab("mid") + ylab("final") + 
+  ggtitle("Scatterplot with smoothers")
+
+# Linear model
+smooth + geom_smooth(method="lm")
+
+#Double check with console output
+plot(final~mid, data=stat16.23)
+m16.23<-lm(final~mid,data=stat16.23); summary(m16.23);
+abline(m16.23)
+m16.23$coef
+
+```
+
+
+```{r}
+stat17.23<-filter(stat17, year == 2 | year == 3)
+boxplot(mid~year, data=stat17.23)
+stat17.2<-filter(stat17,year==2 )
+stat17.3<-filter(stat17,year==3)
+summary(stat17.2);summary(stat17.3)
+par(mfrow=c(1,2));
+hist(stat17.3$mid);hist(stat17.23$mid)
+```
+```{r}
+
+```
+
+```{r}
+smid17.2<-sort(stat17.2$mid, decreasing=TRUE)
+ep<-rank(smid17.2)/47
+summary(smid17.2);sd(smid17.2)
+head(smid17.2)
+
+smid17.2[27]
+qnorm.ep<-qnorm(ep,39.79,31.68)
+smid17.2
+plot(smid17.2~qnorm.ep)
+```
+
+```{r}
+x<-c(4, 7, 48, 78)#安砞2017ㄤいΘ罿
+pnorm(x, 29.51, 20.09637)
+k<-c(0.1021522 , 0.1313350 , 0.8212310 , 0.9920863)
+#2017ㄤいゑㄒ
+xx<-qnorm(k, 46.07, 27.36125)
+xx#ノ2017ㄤいΘ罿传衡Θ2016ㄤいΘ罿
+y<-0.5319059*(xx)+10.1265808#2016戳い戳ソㄧ计瓜
+y#2016戳ソΘ罿
+kk<-c(9/10,6/10,3/10 )#2017 A B C D跋丁
+xxx<-qnorm(kk, 38.64, 23.06347)
+xxx#A:だ计>68.1 B:44.4<だ计<68.1 C:26.5<だ计<44.4 D:だ计<26.5
+s<-0.35*stat16.23$mid+0.65*stat16.23$final
+summary(s)
+sd(s)
+SA<-0.35*xx+0.65*y
+SA
+```

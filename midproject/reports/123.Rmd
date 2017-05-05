@@ -1,0 +1,91 @@
+---
+title: "Mid-Project"
+output: html_notebook
+---
+
+```{r}
+library(data.table)
+exam <- fread('http://faculty.ndhu.edu.tw/~chtsao/ftp/stat2016.txt')
+head(exam)   
+```
+
+```{r}
+stat16 <- fread('http://faculty.ndhu.edu.tw/~chtsao/ftp/stat2016.txt')
+colnames(stat16)<-c("year","mid","final")
+stat16$year<-as.factor(stat16$year)
+head(stat16)   
+summary(stat16)
+```
+
+```{r}
+stat16[which(mid < 0|final<0)]
+stat16<-subset(stat16,mid >= 0&final>=0)
+summary(stat16)
+```
+
+```{r}
+suppressMessages(library(dplyr)) 
+stat16.2<-filter(stat16,year==2)
+summary(stat16.2)
+```
+
+##因為修課的人以大二居多，故以大二的成績去做預測
+
+```{r}
+m16.2<-lm(final~mid,data=stat16.2); 
+summary(m16.2);
+mid=c(10,30,50,70)
+mid=data.frame(mid)
+predict(m16.2,mid)
+plot(final~mid, data=stat16.2)
+abline(m16.2)
+
+```
+
+
+```{r}
+library(data.table)
+stat17<-fread('http://faculty.ndhu.edu.tw/~chtsao/ftp/stat17noid.csv')
+colnames(stat17)<-c("year","mid")
+stat17$year<-as.factor(stat17$year)
+summary(stat17)
+```
+
+```{r}
+stat17[which(mid < 0)]
+stat17<-subset(stat17,mid >= 0)
+summary(stat17)
+```
+
+```{r}
+stat17.2<-filter(stat17,year==2 )
+summary(stat17.2);
+hist(stat17.2$mid);
+```
+
+```{r}
+m16.2<-lm(final~mid,data=stat16.2); 
+summary(m16.2);
+mid=data.frame(stat17.2)
+final17.2<-predict(m16.2,mid)
+final17.2
+```
+```{r}
+#score=0.5*x+0.5*y
+x<-stat17.2$mid
+y<-final17.2
+score<-0.5*x+0.5*y
+score
+
+```
+```{r}
+sort(score, decreasing=TRUE)
+```
+## #A:#B:#C:#(DorE)≈1:3:3:3，我們將47人分成10等分，故#A分配到的人數為4.7人，又因為人數要為整數，所以#A為5人，其餘等第(#B:#C:#(DorE))各為14人{(47-5)/3}
+##所以#A等第分數區間為[81,100]#B等第分數區間為[41,81)#c等第分數區間為[17,41) #(DorE)等第分數區間為[0,17)
+##甲生 期中考10 期末考17.85106 總成績13.92553 對應等第為DorE
+##乙生 期中考30 期末考29.86839 總成績29.934195對應等第為C
+##丙生 期中考50 期末考41.88572 總成績45.94286 對應等第為B
+##丁生 期中考70 期末考53.90304 總成績61.95152 對應等第為B
+
+

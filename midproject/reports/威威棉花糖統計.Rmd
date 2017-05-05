@@ -1,0 +1,172 @@
+---
+title: "Work on Stat 2016/2017 exam data (rev)"
+output: html_notebook
+---
+Rev note: Some (possibly) useful commands and experiments done in class are added. 
+
+## Data management: 
+
+Remove id data from 2017 data and output as a csv file. In addition,
+I also randomly reorder the rows for anonymity. (R codes FYR/For Your Reference)
+```{r Remove id}
+#t<-matrix(scan("midstat2017m.csv"),ncol=3,byrow=T)
+## The first column is id and intentionally left out
+#exam16 <-data.frame(year=as.factor(t[,2]),mid=t[,3])
+#exam16<-exam16[sample(nrow(exam16)),]
+## Two different csv outputs
+#write.csv(exam16, file = "stat17noid2.csv")
+#write.table(exam16, file = "stat17noid.csv",row.names=FALSE, na="",col.names=FALSE, sep=" ")
+```
+Import stat 2017 data 
+```{r}
+library(data.table)
+#stat17<-fread('stat17noid.csv')
+stat17<-fread('http://faculty.ndhu.edu.tw/~chtsao/ftp/stat17noid.csv')
+colnames(stat17)<-c("year","mid")
+stat17$year<-as.factor(stat17$year)
+head(stat17)
+summary(stat17)
+```
+Data cleansing using subset command
+```{r}
+stat17[which(mid < 0)]
+stat17<-subset(stat17,mid >= 0)
+summary(stat17)
+# You may also view the whole dataframe in the Environment pane ~ View(stat17)
+```
+```{r}
+stat17[which(mid > 80)]
+stat17<-subset(stat17,mid <= 80)
+summary(stat17)
+# You may also view the whole dataframe in the Environment pane ~ View(stat17)
+```
+Import stat 2016 data 
+```{r}
+stat16 <- fread('http://faculty.ndhu.edu.tw/~chtsao/ftp/stat2016.txt')
+colnames(stat16)<-c("year","mid","final")
+stat16$year<-as.factor(stat16$year)
+head(stat16)   # Take a quick look of first few cases
+summary(stat16)
+```
+```{r}
+stat16[which(mid < 0)]
+stat16<-subset(stat16,mid >= 0)
+summary(stat16)
+```
+Now we have two dataframes, stat2016(year, mid, final), stat2017(year,mid). 
+
+##Where are we heading
+Where are we now? What do we know? What do we want to know (but unknown now)?
+
+> ~~Walk~~ Prog before you run. Think before you prog.
+
+Some handy functions/commands for exploratory data analysis and data cleansing
+```{r}
+suppressMessages(library(dplyr)) # load package dplyr but suppress its messages
+stat16.23<-filter(stat16, year == 2 | year == 3)
+stat16.2<-filter(stat16,year==2 )
+stat16.3<-filter(stat16,year==3)
+summary(stat16.23)
+```
+
+
+```{r}
+#將2017的成績分類
+stat17.23<-filter(stat17, year == 2 | year == 3)
+stat17.2<-filter(stat17,year==2 )
+stat17.3<-filter(stat17,year==3)
+summary(stat17.23)
+```
+```{r}
+library(ggplot2)
+scatter <- ggplot(data=stat16.23, aes(x = mid, y = final)) 
+scatter + geom_point(aes(color=year, shape=year)) +
+  xlab("midterm") +  ylab("final") +
+  ggtitle("Midterm vs Final Plot (Stat16.23)")
+``````
+More 
+
+
+
+```{r}
+stat17.23<-filter(stat17, year == 2 | year == 3)
+boxplot(mid~year, data=stat17.23)
+stat17.2<-filter(stat17,year==2 )
+stat17.3<-filter(stat17,year==3)
+summary(stat17.23)
+par(mfrow=c(2,2));
+hist(stat17.23$mid);hist(stat17.2$mid);hist(stat17.3$mid)
+```
+
+
+```{r}
+smooth <- ggplot(data=stat16.23, aes(x=mid, y=final, color=year)) + 
+  geom_point(aes(shape=year), size=1.5) + xlab("mid") + ylab("final") + 
+  ggtitle("Scatterplot with smoothers")
+
+# Linear model
+smooth + geom_smooth(method="lm")
+
+#Double check with console output
+plot(final~mid, data=stat16.23)
+m16.23<-lm(final~mid,data=stat16.23); summary(m16.23);
+abline(m16.23)
+m16.23$coef
+
+```
+```{r}
+summary(stat17.23$mid)
+sd(stat17.23$mid)
+summary(stat16.23$mid)
+sd(stat16.23$mid)
+```
+```{r}
+x<-c(15.00, 30.50, 41.19, 58)
+#2017  N(29.51, 20.09637^2)
+#計算2017的期中百分比
+pnorm(x, 29.51, 20.09637)
+k<-c(0.3180282 , 0.4112158 , 0.9920863 , 0.7940476)
+#將2017的成績換算成2016
+#2016  N(46.07, 27.36125)
+#計算2016的期中成績
+xx<-qnorm(k, 46.07, 27.36125)
+xx
+#找2016期末成績
+y<-0.5319059*(xx)+10.1265808
+y
+```
+```{r}
+#算2016學期總成績
+Settlement<-0.35*stat16.23$mid+0.65*stat16.23$final
+#算假設的2016學期總成績
+SettlementA <-0.35*xx+0.65*y
+SettlementA
+#找出學期總成績的平均數跟標準差
+summary(Settlement)
+sd(Settlement)
+#算A B C D 的標準
+abcd<-c(9/10,6/10,3/10)
+
+qnorm(abcd, 38.64, 23.06347)
+#A>68.19703 , B>44.48306 , C>26.54550 , D<26.54550
+#所以假設的分數，學期總成績必須大於31.72175
+#31.72175-0.35*假設的期中分數=2016所需的期末成績
+(26.54550-xx*0.35)/0.65
+
+
+```
+```{r}
+#驗算期末成績是否有錯誤
+cc<-(26.54550-xx*0.35)/0.65
+sss <-0.35*xx+0.65*cc
+sss
+```
+
+### Links and Referenes:
+
+  - [Quick-R: Data management](http://www.statmethods.net/management/index.html)
+  - [Data visualization with ggplot2](https://www.mailman.columbia.edu/sites/default/files/media/fdawg_ggplot2.html)
+  - [Data Manipulation with  dplyr](https://www.r-bloggers.com/data-manipulation-with-dplyr/)
+  - [Intro to dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)
+
+
