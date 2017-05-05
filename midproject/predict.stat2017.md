@@ -15,7 +15,7 @@ You are invited to use R notebook/Rmarkdown for this project. Have fun!
 - [努力向上](http://rpubs.com/skyking363/272436): 王子軒 蔡宗祐 許弘儒
 - 威威棉花糖([Rmd](reports/威威棉花糖統計.Rmd),[pptx](reports/威威棉花糖統計軟體期中報告.pptx)): 陳宇凱，葉信宏，鄭凱文，楊育維，崔永昀
 - [皮卡丘](http://rpubs.com/Helen9311/271980): 吳家惠 、吳均熠
-- [CoCo](http://reports/coco.rg09.html): 陳俊宏 王慶文 林裕凱
+- [CoCo](http://~/reports/coco.rg09.html): 陳俊宏 王慶文 林裕凱
 - [123](http://reports/123.nb.html): 林昱君 吳珮甄 鍾函庭 張詠筑 曾馨慧
 
 received/revised by May 6, 2017.
