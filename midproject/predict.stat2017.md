@@ -17,5 +17,5 @@ You are invited to use R notebook/Rmarkdown for this project. Have fun!
 - [皮卡丘](http://rpubs.com/Helen9311/271980): 吳家惠 、吳均熠
 - [CoCo](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/coco.rg09.html): 陳俊宏 王慶文 林裕凱
 - [123](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/123.nb.html): 林昱君 吳珮甄 鍾函庭 張詠筑 曾馨慧
-
+- [二二四all pass團](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/224allpa.nb.html): 陳奕璁 鍾育晴 孫薇淇
 received/revised by May 6, 2017.
