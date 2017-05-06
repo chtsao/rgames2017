@@ -1,0 +1,279 @@
+---
+title: "R games 期中報告"
+output: html_notebook
+---
+組名：二二四all pass團
+
+組員：陳奕璁、孫薇淇、鍾育晴
+
+## Mid-Project: 
+
+Given the 2016 Stat data set, estimate the final exam scores of 4 students who scores, say, 10, 30, 50, 70 (or more realistic scores of your interest) in the midterm Stat 2017.
+
+According to an unidentified yet reliable source, the course grades given by instructor is roughly #A:#B:#C:#(D or E) ???1:3:3:3
+
+Estimate the course grades of these 4 students. Please provide the assumptions and rationale of your estimation.
+
+```{r}
+#請往下到"Start:D"
+```
+
+
+###Import stat 2017 data 
+```{r}
+library(data.table)
+#stat17<-fread('stat17noid.csv')
+stat17<-fread('http://faculty.ndhu.edu.tw/~chtsao/ftp/stat17noid.csv')
+colnames(stat17)<-c("year","mid")
+stat17$year<-as.factor(stat17$year)
+summary(stat17)
+```
+Data cleansing using subset command
+```{r}
+stat17[which(mid < 0)]
+stat17<-subset(stat17,mid >= 0)
+summary(stat17)
+# You may also view the whole dataframe in the Environment pane ~ View(stat17)
+```
+Import stat 2016 data 
+```{r}
+stat16 <- fread('http://faculty.ndhu.edu.tw/~chtsao/ftp/stat2016.txt')
+colnames(stat16)<-c("year","mid","final")
+stat16$year<-as.factor(stat16$year)
+head(stat16)   # Take a quick look of first few cases
+summary(stat16)
+```
+Now we have two dataframes, stat2016(year, mid, final), stat2017(year,mid). 
+
+##Where are we heading
+Where are we now? What do we know? What do we want to know (but unknown now)?
+
+> ~~Walk~~ Prog before you run. Think before you prog.
+
+Some handy functions/commands for exploratory data analysis and data cleansing
+```{r}
+suppressMessages(library(dplyr)) # load package dplyr but suppress its messages
+stat16.23<-filter(stat16, year == 2 | year == 3)
+stat16.2<-filter(stat16,year==2 )
+stat16.3<-filter(stat16,year==3)
+summary(stat16.23)
+```
+```{r}
+library(ggplot2)
+scatter <- ggplot(data=stat16.23, aes(x = mid, y = final)) 
+scatter + geom_point(aes(color=year, shape=year)) +
+  xlab("midterm") +  ylab("final") +
+  ggtitle("Midterm vs Final Plot (Stat16.23)")
+```
+More 
+```{r}
+smooth <- ggplot(data=stat16.23, aes(x=mid, y=final, color=year)) + 
+  geom_point(aes(shape=year), size=1.5) + xlab("mid") + ylab("final") + 
+  ggtitle("Scatterplot with smoothers")
+
+# Linear model
+smooth + geom_smooth(method="lm")
+
+#Double check with console output
+plot(final~mid, data=stat16.2)
+m16.2<-lm(final~mid,data=stat16.2); summary(m16.2);
+abline(m16.2)
+
+```
+
+
+```{r}
+stat17.23<-filter(stat17, year == 2 | year == 3)
+boxplot(mid~year, data=stat17.23)
+stat17.2<-filter(stat17,year==2 )
+stat17.3<-filter(stat17,year==3)
+summary(stat17.2);summary(stat17.3)
+par(mfrow=c(1,2));
+hist(stat17.3$mid);hist(stat17.2$mid)
+```
+
+```{r}
+smid17.2<-sort(stat17.2$mid, decreasing=TRUE)
+ep<-rank(smid17.2)/47
+summary(smid17.2);sd(smid17.2)
+head(smid17.2)
+
+smid17.2[27]
+qnorm.ep<-qnorm(ep,39.79,31.68)
+smid17.2
+plot(smid17.2~qnorm.ep)
+```
+
+### Links and Referenes:
+
+  - [Quick-R: Data management](http://www.statmethods.net/management/index.html)
+  - [Data visualization with ggplot2](https://www.mailman.columbia.edu/sites/default/files/media/fdawg_ggplot2.html)
+  - [Data Manipulation with  dplyr](https://www.r-bloggers.com/data-manipulation-with-dplyr/)
+  - [Intro to dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)
+
+
+
+#Start:D
+
+
+##以2016和2017的二三年級為主
+
+###stat17.2
+```{r}
+smid17.2<-sort(stat17.2$mid, decreasing=TRUE)
+ep<-rank(smid17.2)/47
+summary(smid17.2);sd(smid17.2)
+```
+
+```{r}
+head(smid17.2)
+```
+
+```{r}
+qnorm.ep<-qnorm(ep,39.79,31.68)
+smid17.2
+```
+
+```{r}
+plot(smid17.2~qnorm.ep)
+```
+
+###stat17.3
+```{r}
+smid17.3<-sort(stat17.3$mid, decreasing=TRUE)
+ep<-rank(smid17.3)/10
+summary(smid17.3);sd(smid17.3)
+```
+
+```{r}
+head(smid17.3)
+```
+
+```{r}
+qnorm.ep<-qnorm(ep,39.79,31.68)
+smid17.3
+```
+
+```{r}
+plot(smid17.3~qnorm.ep)
+```
+
+###stat16.2
+```{r}
+smid16.2<-sort(stat16.2$mid, decreasing=TRUE)
+ep<-rank(smid16.2)/42
+summary(smid16.2);sd(smid16.2)
+```
+```{r}
+head(smid16.2)
+```
+```{r}
+qnorm.ep<-qnorm(ep,39.79,31.68)
+smid16.2
+```
+```{r}
+plot(smid16.2~qnorm.ep)
+```
+
+###stat16.3
+```{r}
+smid16.3<-sort(stat16.3$mid, decreasing=TRUE)
+ep<-rank(smid16.3)/15
+summary(smid16.3);sd(smid16.3)
+```
+```{r}
+head(smid16.3)
+```
+```{r}
+qnorm.ep<-qnorm(ep,39.79,31.68)
+smid16.3
+```
+```{r}
+plot(smid16.3~qnorm.ep)
+```
+
+##others
+
+```{r}
+smooth <- ggplot(data=stat16.23, aes(x=mid, y=year, color=year)) + 
+  geom_point(aes(shape=year), size=1.5) + xlab("mid") + ylab("year") + 
+  ggtitle("Scatterplot with smoothers - stat16.23")
+# Linear model
+smooth + geom_smooth(method="lm")
+
+smooth <- ggplot(data=stat17.23, aes(x=mid, y=year, color=year)) + 
+  geom_point(aes(shape=year), size=1.5) + xlab("mid") + ylab("year") + 
+  ggtitle("Scatterplot with smoothers - stat17.23")
+# Linear model
+smooth + geom_smooth(method="lm")
+```
+```{r}
+smooth <- ggplot(data=stat16.23, aes(x=final, y=year, color=year)) + 
+  geom_point(aes(shape=year), size=1.5) + xlab("final") + ylab("year") + 
+  ggtitle("Scatterplot with smoothers")
+# Linear model
+smooth + geom_smooth(method="lm")
+```
+
+```{r}
+smid17.23<-sort(stat17.23$mid, decreasing=TRUE)
+ep<-rank(smid17.23)/57
+summary(smid17.23);sd(smid17.23)
+```
+
+```{r}
+smid16.23<-sort(stat16.23$mid, decreasing=TRUE)
+ep<-rank(smid16.23)/57
+summary(smid16.23);sd(smid16.23)
+```
+
+```{r}
+smid17<-sort(stat17$mid, decreasing=TRUE)
+ep<-rank(smid17)/62
+summary(smid17);sd(smid17)
+```
+```{r}
+plot(smid17)
+
+```
+
+
+```{r}
+#找出2016年期中期末之回歸線
+lm(formula = stat16$final ~ stat16$mid)
+#令x=期中成績,y=期末成績
+#y=0.5517x+8.4448
+```
+
+```{r}
+#Q1:找出四人期末分數 x=(15,30.5,41.19,58)
+x<-c(15,30.5,41.19,58)
+y<-0.5517*x+8.4448
+y
+```
+
+```{r}
+#Q2:分數A/B/C/D or E 比例約等於1:3:3:3 試問各成績區間?
+#假設2016.2017總成績計算方式皆為40%期中+50%期末+10%平時成績(每人皆有) 缺考-10分
+#先計算2016每人總成績
+stat16a <- 0.4*stat16$mid + 0.5*stat16$final +10
+sort(stat16a)
+
+#成績A 63/10=6.3 為方便計算取6人
+#成績B.C.D各為19人
+
+```
+
+
+```{r}
+#由上述可知
+room <- 0.4*x+0.5*y+10
+room #四人2017學期總成績
+
+
+```
+
+#ANS:四人預測期末分數 16.7  25.2  31.1  40.4
+#ANS:排列2016總成績後可知成績A區間為(100,77) B為[77,50) C為[50,33.1) D為[33.1,0]
+#ANS:由此可知期中考的室友15分會得到D or E , 考30.5分會得C , 考41.19會得C 考58會得B
+
