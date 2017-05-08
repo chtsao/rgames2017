@@ -13,10 +13,10 @@ You are invited to use R notebook/Rmarkdown for this project. Have fun!
 - [最粗的港洞](http://rpubs.com/smallblack/272908): 黃宗琳 蔡承哲 洪誌謙 翁梓祐  
 - [陳竑達好帥<3](http://rpubs.com/Yalic/272901): 陳竑達 邱昇鴻  林彥丞  游庭禎  蔡承志 
 - [努力向上](http://rpubs.com/skyking363/272436): 王子軒 蔡宗祐 許弘儒
-- 威威棉花糖([Rmd](reports/威威棉花糖統計.Rmd),[pptx](reports/威威棉花糖統計軟體期中報告.pptx)): 陳宇凱，葉信宏，鄭凱文，楊育維，崔永昀
+- 威威棉花糖([Rmd](reports/威威棉花糖統計.Rmd),[pptx](reports/威威棉花糖統計軟體期中報告.pptx)): 熊英翰 陳宇凱，葉信宏，鄭凱文，楊育維，崔永昀
 - [皮卡丘](http://rpubs.com/Helen9311/271980): 吳家惠 、吳均熠
 - [CoCo](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/coco.rg09.html): 陳俊宏 王慶文 林裕凱
-- [123](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/123.nb.html): 林昱君 吳珮甄 鍾函庭 張詠筑 曾馨慧
+- [123(更新)](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/123.nb.html): 林昱君 吳珮甄 鍾函庭 張詠筑 曾馨慧
 - [二二四all pass團](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/224allpa.nb.html): 陳奕璁 鍾育晴 孫薇淇
 
 received/revised by May 6, 2017.
