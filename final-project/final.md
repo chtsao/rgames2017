@@ -26,4 +26,3 @@ Submissoin: You can send your project link to me or pull a request at this Final
   
   ??商晨洋、 歐陽琮、
 
-Hello! I'm a student. My name is Pan. I love mathematics.
