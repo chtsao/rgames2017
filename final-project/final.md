@@ -9,7 +9,7 @@
 
 (Tentative) Project title/data submission: by 5/31. 
 Project submission by AM 11:59 6/4. 
-<span style="color:red">Submissoin</span>: You can send your project link to me or pull a request at this Final Project Github page. 
+<span style="color:red">some *Submissoin* text</span>: You can send your project link to me or pull a request at this Final Project Github page. 
 
 # The Teams/Reports
 
