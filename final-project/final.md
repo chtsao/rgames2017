@@ -31,4 +31,4 @@ Submissoin: You can send your project link to me or pull a request at this Final
 *: 至6/5中午仍未收到報告小隊/個人 
 
 We will determine the presentation order via sample(1:10) in class (with "suitable" assigned random.seed). 
-Presentation time: 15 min. All the team members should standby for Q&A.
+Presentation time: 15 min. All team members should standby for Q&A.
