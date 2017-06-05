@@ -22,9 +22,11 @@ Submissoin: You can send your project link to me or pull a request at this Final
   7.  [黑櫻桃樹](http://rpubs.com/Helen9311/280819)     皮卡丘: 吳家惠、吳均熠 
   8.  CoCo*: 陳俊宏 王慶文 林裕凱
   9.  [Old Faithful](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/final/123.nb.html)   123: 林昱君 吳珮甄 鍾函庭 張詠筑 曾馨慧
-  10. [麥當勞餐點選擇分析](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/final/Mc224.Rmd),[data](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/final/menu.csv)    二二四all pass團: 陳奕璁 鍾育晴 孫薇淇
+  10. [麥當勞餐點選擇分析](http://rpubs.com/wei821/282402)    二二四all pass團: 陳奕璁 鍾育晴 孫薇淇
   
   ??* 歐陽琮 翁梓祐
+  
+  報告順序：75321;9864,10
   
 *: 至6/5中午仍未收到報告小隊/個人 
 
