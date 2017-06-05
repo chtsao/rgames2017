@@ -9,7 +9,7 @@
 
 (Tentative) Project title/data submission: by 5/31. 
 Project submission by AM 11:59 6/4. 
-Submissoin: You can send your project link to me or pull a request at this Final Project Github page. 
+<span style="color:red">Submissoin</span>: You can send your project link to me or pull a request at this Final Project Github page. 
 
 # The Teams/Reports
 
@@ -26,7 +26,7 @@ Submissoin: You can send your project link to me or pull a request at this Final
   
   ??* 歐陽琮 翁梓祐
   
-  ## <span style="color:red">some **T報告順序** text</span>：75321;9864,10
+  ## 報告順序：75321;9864,10
   
 *: 至6/5中午仍未收到報告小隊/個人 
 
