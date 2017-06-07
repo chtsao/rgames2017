@@ -1,0 +1,31 @@
+一、	緒論
+1.	背景:資料來自一個旗下擁有30個部門的金融組織，從每個部門裡挑35個員工，查各個部門的問題
+2.	問題/動機:我們探討目前各位最關心的薪資問題，是否薪水會和自己的工作表現呈正比，明明有再進步而卻得不到該有的加薪，還是會被某些階級高的特權影響到自己薪水的高低
+3.	結果:我們發現薪水加薪和工作表現呈正比，也和特權成正比，但是特權的影響力小於工作表現
+
+```{r}
+attitude
+attach(attitude)
+x1 <- lm(raises~advance)
+summary(x1)
+plot(raises~advance)
+abline(x1)
+```
+```{r}
+x2 <- lm(raises~privileges)
+summary(x2)
+plot(raises~privileges)
+abline(x2)
+```
+```{r}
+x1$coef
+x2$coef
+```
+從數據上得知，加薪和特權跟工作表現呈正比這算是比較普遍認同的
+raises~privileges 斜率直=0.378551
+raises~advance 斜率直=0.5802424 
+從迴歸直線方程式看出，你的工作表是主要取決於你加薪的條件而不是你擁有的特權
+       
+Referenes:http://rpubs.com/Helen9311/280819
+
+
