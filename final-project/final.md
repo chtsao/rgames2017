@@ -20,8 +20,8 @@ Submissoin: You can send your project link to me or pull a request at this Final
   5.  [Orange data](https://drive.google.com/open?id=0B-5DlPwCNHLOd2NKU2dObXF3TW8)   許弘儒, 陳璽安
   6.  威威棉花糖*(Rmd,pptx): 熊英翰, 陳宇凱， 葉信宏， 鄭凱文， 楊育維， 崔永昀
   7.  [黑櫻桃樹](http://rpubs.com/Helen9311/280819)     皮卡丘: 吳家惠、吳均熠 
-  8.  CoCo*: 陳俊宏 王慶文 林裕凱
-  9.  [Old Faithful(更新)](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/final/123.nb.html)   123: 林昱君 吳珮甄 鍾函庭 張詠筑 曾馨慧
+  8.  [公司問題對薪水的影響](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/final/公司問題對薪水的影響.Rmd) CoCo*: 陳俊宏 王慶文 林裕凱
+  9.  [Old Faithful(更新)](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/final/)[最新板](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/final/1.nb.html)   123: 林昱君 吳珮甄 鍾函庭 張詠筑 曾馨慧
   10. [麥當勞餐點選擇分析](http://rpubs.com/wei821/282915)    二二四all pass團: 陳奕璁 鍾育晴 孫薇淇
   
   ??* 歐陽琮 翁梓祐
