@@ -18,7 +18,7 @@ Submissoin: You can send your project link to me or pull a request at this Final
   3.  高雄捷運運量/人口分部分析 ([報告版](http://rpubs.com/skyking363/282132), [決定版](http://rpubs.com/skyking363/282989))   王子軒
   4.  [Fiji earthquake](http://rpubs.com/TSUNG-YU/281842)          蔡宗祐
   5.  [Orange data](https://drive.google.com/open?id=0B-5DlPwCNHLOd2NKU2dObXF3TW8)   許弘儒, 陳璽安
-  6.  威威棉花糖*(Rmd,pptx): 熊英翰, 陳宇凱， 葉信宏， 鄭凱文， 楊育維， 崔永昀
+  6.  [Secretary Problem Simulation](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/final/統軟完成報告.nb.html)威威棉花糖*: 熊英翰, 陳宇凱， 葉信宏， 鄭凱文， 楊育維， 崔永昀
   7.  [黑櫻桃樹](http://rpubs.com/Helen9311/280819)     皮卡丘: 吳家惠、吳均熠 
   8.  [公司問題對薪水的影響](http://github.com/chtsao/rgames2017/blob/master/final-project/codes/公司問題對薪水的影響.Rmd)[docx](http://github.com/chtsao/rgames2017/blob/master/final-project/codes/%E5%85%AC%E5%8F%B8%E5%95%8F%E9%A1%8C%E5%B0%8D%E8%96%AA%E6%B0%B4%E7%9A%84%E5%BD%B1%E9%9F%BF__1_.docx) CoCo*: 陳俊宏 王慶文 林裕凱
   9.  Old Faithful([更新](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/final/123.nb.html),[最新板](http://faculty.ndhu.edu.tw/~chtsao/ftp/rgames/final/1.nb.html))   123: 林昱君 吳珮甄 鍾函庭 張詠筑 曾馨慧
