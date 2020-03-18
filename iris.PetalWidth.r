@@ -4,7 +4,7 @@
 # 1. Perform a naive data summary: summary and plot
 # 2. Plot individual variables
 
-# R 是個很方便的工具
+# R 是個很方便的工具，上課後自己操作一次，很容易就上手。
 
 # by Kno 
 
