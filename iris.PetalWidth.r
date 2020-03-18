@@ -3,7 +3,10 @@
 # 0. Take a quick look of few samples
 # 1. Perform a naive data summary: summary and plot
 # 2. Plot individual variables
-# by Kno
+
+# R 是個很方便的工具
+
+# by Kno 
 
 attach(iris)   # assign iris as the default data.frame
 names(iris)    # list varibles of iris
@@ -24,7 +27,7 @@ plot(iris)    # Pair plots of all variables in Iris
 summary(iris)              # Summary of variables in Iris data
 summary(iris$Petal.Width)  # Summary of varible Petal.Width of Iris data
 
-par(mfrow=c(2,1)); 
+par(mfrow=c(2,1));         # Setup graphic device, i.e. window configuration (for graphs)
 plot(Petal.Width)
 boxplot(Petal.Width)
 
