@@ -1,9 +1,21 @@
-# Examine Iris data in more details
-#       1. Plot variable Petal.Width
+# A closer look at Iris data in more details.
+# For the R built-in data set iris, we will 
+# 0. Take a quick look of few samples
+# 1. Perform a naive data summary: summary and plot
+# 2. Plot individual variables
 # by Kno
 
-attach(iris)
+attach(iris)   # assign iris as the default data.frame
 names(iris)    # list varibles of iris
+
+iris           # Print out the whole data.frame
+
+nrow(iris)     # Find the dimension: n (no. of rows) and p (no. of columns) of iris
+ncol(iris)
+
+head(iris)     # first few samples
+tail(iris)     # last few samples
+
 
 plot(iris)    # Pair plots of all variables in Iris
 # Focus on the panel of Petal.Width vs Species (The "(5,4)" panel)
